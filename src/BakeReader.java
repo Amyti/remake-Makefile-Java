@@ -29,9 +29,7 @@ public class BakeReader {
                 if (ligne.contains(":") && !ligne.contains("=")) {
                     String[] parts = ligne.split(":", 2);
                     if (parts.length == 2) {
-                        String target = parts[0].trim();
-                        String[] dependencies = parts[1].trim().split("\\s+"); 
-                        cibles.put(target, dependencies);
+                        cibles.put(parts[0].trim(), parts[1].trim().split(" "));
                     }
                 }
 
