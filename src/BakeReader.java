@@ -6,12 +6,13 @@ import java.util.HashMap;
 public class BakeReader {
     private String cheminFichier;
     private HashMap<String, String> variables = new HashMap<>();
+    private HashMap<String, String[]> cibles = new HashMap<>();
 
     public BakeReader(String cheminFichierS) {
         cheminFichier = cheminFichierS;
     }
 
-    public void readVariable() {
+    public void readInformations() {
         try (BufferedReader lecteur = new BufferedReader(new FileReader(cheminFichier))) {
             String ligne;
             while ((ligne = lecteur.readLine()) != null) {
@@ -24,11 +25,23 @@ public class BakeReader {
                         variables.put(key, value);
                     }
                 }
+
+                if (ligne.contains(":") && !ligne.contains("=")) {
+                    String[] parts = ligne.split(":", 2);
+                    if (parts.length == 2) {
+                        String target = parts[0].trim();
+                        String[] dependencies = parts[1].trim().split("\\s+"); 
+                        cibles.put(target, dependencies);
+                    }
+                }
+
             }
         } catch (IOException e) {
-            System.err.println("Erreur lors de la lecture du fichier : " + e.getMessage());
+            System.err.println("petit soucis fichier bizzare" );
         }
     }
+
+
 
     public void afficherVariables() {
         for (String key : variables.keySet()) {
@@ -36,9 +49,19 @@ public class BakeReader {
         }
     }
 
+    public void afficherTargets() {
+        System.out.println("Cibles :");
+        for (String key : cibles.keySet()) {
+            System.out.print(key + " : ");
+            System.out.println(String.join(", ", cibles.get(key)));
+        }
+    }
+
+/*-----------------------------------------Juste pour test en attendant----------------------------------------- */ 
     public static void main(String[] args) {
         BakeReader bakeReader = new BakeReader(args[0]);
-        bakeReader.readVariable();
+        bakeReader.readInformations();
         bakeReader.afficherVariables();
+        bakeReader.afficherTargets();
     }
 }
