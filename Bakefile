@@ -1,0 +1,11 @@
+# Définir des variables
+CC=
+CFLAGS=
+
+# Première règle
+
+
+# Deuxième règle
+.PHONY: clean
+clean:
+    rm -f *
