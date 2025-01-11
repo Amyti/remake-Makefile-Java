@@ -56,7 +56,7 @@ public class GrapheDep {
     }
 
     private void graphOrdre(String cible, Set<String> visites, List<String> ordre) {
-        if (cible.endsWith(".c") || cible.endsWith(".h")) {
+        if (cible.endsWith(".c") || cible.endsWith(".h") || cible.endsWith(".java")) {
             return;
         }
 

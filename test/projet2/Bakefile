@@ -1,0 +1,8 @@
+
+
+
+Main.class: Main.java 
+	javac Main.java
+
+Utils.class: Utils.java 
+	javac Utils.java

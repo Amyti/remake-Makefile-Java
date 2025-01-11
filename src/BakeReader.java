@@ -2,18 +2,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class BakeReader {
     private String cheminFichier;
     private HashMap<String, String> variables = new HashMap<>();
     private HashMap<String, String[]> cibles = new HashMap<>();
     private HashMap<String, String> commandes = new HashMap<>();
+    private Set<String> phonyCibles = new HashSet<>();
 
     public BakeReader(String cheminFichierS) {
         cheminFichier = cheminFichierS;
         readInformations();
     }
 
+
+    public HashMap<String, String> getVariables(){
+        return variables;
+    }
 
 
     public HashMap<String, String[]> getCibles(){
@@ -22,6 +29,10 @@ public class BakeReader {
 
     public HashMap<String, String> getCommandes(){
         return commandes;
+    }
+
+    public Set<String> getPhonyCibles(){
+        return phonyCibles;
     }
 
 
@@ -34,7 +45,7 @@ public class BakeReader {
             String ligne;
             String cibleAct = null;
             while ((ligne = lecteur.readLine()) != null) {
-                
+                ligne = replaceVariables(ligne);
 
                 if (ligne.startsWith("#")){
                     continue;
@@ -58,8 +69,15 @@ public class BakeReader {
 
                 else if (ligne.startsWith("\t")) {
                     String commande = ligne.trim();
-                    commande = replaceVariables(commande); 
                     commandes.put(cibleAct, commande);
+                }
+
+                else if(ligne.startsWith(".PHONY")){
+                    String[] parts = ligne.split(":")[1].trim().split(" ");
+                    for(String partie : parts){
+                        phonyCibles.add(partie.trim());
+                    }
+
                 }
 
 
