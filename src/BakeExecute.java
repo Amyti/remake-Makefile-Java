@@ -59,10 +59,9 @@ public class BakeExecute {
         try {
             for (String cible : ordre) {
 
-                 if (cible.equals("clean")) {
-                     continue; 
-                  }
-
+                 if (phonyCibles.contains(cible)) {
+                continue;
+            }
                     String commande = commandes.get(cible);
                     String FicSource = comparator.transfoCible(cible);
                 if (commande != null && comparator.verifRecompilation(FicSource, cible)) {
@@ -84,6 +83,12 @@ public class BakeExecute {
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             try {
                 Process process = processBuilder.start();
+
+                InputStream is = process.getInputStream();
+                InputStream es = process.getErrorStream();
+
+                is.transferTo(System.out);
+                es.transferTo(System.err);
 
                 int exitCode = process.waitFor();
                 return exitCode == 0;

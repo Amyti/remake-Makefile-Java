@@ -58,29 +58,28 @@ public class BakeReader {
                     }
                 }
 
-                else if (ligne.contains(":") && !ligne.contains("=")) {
-                    String[] parts = ligne.split(":", 2);
-                    if (parts.length == 2) {
-                        cibleAct = parts[0].trim();
-                        cibles.put(cibleAct, parts[1].trim().split(" "));
-                        
+                else if (ligne.startsWith(".PHONY")) {
+                      String[] partsPhony = ligne.split(":", 2);
+                      if (partsPhony.length == 2) {
+                      String[] targets = partsPhony[1].trim().split("\\s+");
+                      for (String t : targets) {
+                      phonyCibles.add(t);
+                      }
                     }
                 }
+
+                else if (ligne.contains(":") && !ligne.contains("=")) {
+                       String[] partsCible = ligne.split(":", 2);
+                        if (partsCible.length == 2) {
+                        cibleAct = partsCible[0].trim();
+                        cibles.put(cibleAct, partsCible[1].trim().split(" "));
+                         }
+                    }
 
                 else if (ligne.startsWith("\t")) {
                     String commande = ligne.trim();
                     commandes.put(cibleAct, commande);
                 }
-
-                else if(ligne.startsWith(".PHONY")){
-                    String[] parts = ligne.split(":")[1].trim().split(" ");
-                    for(String partie : parts){
-                        phonyCibles.add(partie.trim());
-                    }
-
-                }
-
-
 
             }
         } catch (IOException e) {
