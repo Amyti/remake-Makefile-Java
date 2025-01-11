@@ -81,15 +81,9 @@ public class BakeExecute {
         String[] command = commande.split(" ");
 
             ProcessBuilder processBuilder = new ProcessBuilder(command);
+            processBuilder.inheritIO();
             try {
                 Process process = processBuilder.start();
-
-                InputStream is = process.getInputStream();
-                InputStream es = process.getErrorStream();
-
-                is.transferTo(System.out);
-                es.transferTo(System.err);
-
                 int exitCode = process.waitFor();
                 return exitCode == 0;
             } catch (IOException | InterruptedException e) {
