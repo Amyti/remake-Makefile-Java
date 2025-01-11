@@ -59,11 +59,12 @@ public class BakeExecute {
         try {
             for (String cible : ordre) {
 
-                if (phonyCibles.contains(cible)) {
-                    continue; 
-                }
-                String commande = commandes.get(cible);
-                String FicSource = comparator.transfoCible(cible);
+                 if (cible.equals("clean")) {
+                     continue; 
+                  }
+
+                    String commande = commandes.get(cible);
+                    String FicSource = comparator.transfoCible(cible);
                 if (commande != null && comparator.verifRecompilation(FicSource, cible)) {
                     System.out.println(commande);
                     if (!executerCommande(commande)) {

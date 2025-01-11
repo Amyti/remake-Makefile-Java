@@ -1,7 +1,6 @@
 CC = gcc
 CFLAGS = -Wall
 
-.PHONY : clean
 
 all: main.o utils.o
 	gcc -o app main.o utils.o
@@ -14,6 +13,8 @@ utils.o: utils.c
 
 clean: 
 	rm -rf app utils.o main.o
+
+.PHONY : clean
 
 
 
