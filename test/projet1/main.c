@@ -7,7 +7,7 @@ int main() {
     printf("Les nombres sont %d et %d.\n", a, b);
 
     int resultat = somme(a, b);
-    printf("La somme est duititge  : %d\n", resultat);
+    printf("La somme est duititge fafa  : %d\n", resultat);
 
     return 0;
 }
