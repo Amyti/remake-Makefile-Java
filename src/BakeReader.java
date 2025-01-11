@@ -11,10 +11,22 @@ public class BakeReader {
 
     public BakeReader(String cheminFichierS) {
         cheminFichier = cheminFichierS;
+        readInformations();
+    }
+
+
+
+    public HashMap<String, String[]> getCibles(){
+        return cibles;
+    }
+
+    public HashMap<String, String> getCommandes(){
+        return commandes;
     }
 
 
 /*-------------------------------------- Lis et met dans des hashmaps les Varibles, cibles et commandes ---------------------------------------------- */
+    
 
 
     public void readInformations() {
@@ -24,13 +36,14 @@ public class BakeReader {
             while ((ligne = lecteur.readLine()) != null) {
                 
 
+                if (ligne.startsWith("#")){
+                    continue;
+                }
 
-                if (ligne.contains("=")) {
+                else if (ligne.contains("=")) {
                     String[] parts = ligne.split("=", 2); 
                     if (parts.length == 2) {
-                        String key = parts[0].trim();
-                        String value = parts[1].trim();
-                        variables.put(key, value);
+                        variables.put(parts[0].trim(), parts[1].trim());
                     }
                 }
 
@@ -53,45 +66,18 @@ public class BakeReader {
 
             }
         } catch (IOException e) {
-            System.err.println("petit soucis fichier bizzare" );
+            System.err.println("Erreur lors de la lecture du fichier..." );
         }
     }
 /*-------------------------------------- remplace les variables par le contenue des variables ---------------------------------------------- */
 
-private String replaceVariables(String commande) {
-    for (String variable : variables.keySet()) {
-        if (commande.contains("$(" + variable + ")")) {
-            commande = commande.replace("$(" + variable + ")", variables.get(variable));
+    private String replaceVariables(String commande) {
+        for (String variable : variables.keySet()) {
+            if (commande.contains("$(" + variable + ")")) {
+                commande = commande.replace("$(" + variable + ")", variables.get(variable));
+            }
         }
-    }
-    return commande;
-}
-
-/*-------------------------------------- Afficher pour voir si cca a bien lue le bakefile ---------------------------------------------- */
-
-    public void afficher() {
-        for (String key : variables.keySet()) {
-            System.out.println(key + " = " + variables.get(key));
-        }
-        System.out.println("Cibles :");
-
-        for (String key : cibles.keySet()) {
-            System.out.print(key + " : ");
-            System.out.println(String.join(", ", cibles.get(key)));
-        }
-        System.out.println("Commandes :");
-
-        for (String target : commandes.keySet()) {
-            System.out.println(target + " -> " + commandes.get(target));
-        }
+        return commande;
     }
 
-   
-
-/*-----------------------------------------Juste pour test en attendant----------------------------------------- */ 
-    public static void main(String[] args) {
-        BakeReader bakeReader = new BakeReader(args[0]);
-        bakeReader.readInformations();
-        bakeReader.afficher();
-    }
 }
