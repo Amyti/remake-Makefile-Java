@@ -19,7 +19,7 @@ public class BakeComparator {
 
         if (!Files.exists(Paths.get(ficCompile))) {
             if (modeDebug) {
-                System.out.println("Le fichier compilé n'existe pas : " + ficCompile + " -> Recompilation nécessaire.");
+                System.out.println("Le fichier n'est pas encore compilé : " + ficCompile + " -> Compilation nécessaire.");
             }
             return true;
         }
