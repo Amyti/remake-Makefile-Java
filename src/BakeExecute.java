@@ -27,7 +27,7 @@ public class BakeExecute {
     }
 
     public void executerCommandesCible(List<String> cibles) {
-    try {
+   
         for (String cible : cibles) {
 
             String commande = commandes.get(cible);
@@ -35,24 +35,13 @@ public class BakeExecute {
                 System.out.println("PAs de commande pour la cible " + cible);
                 continue; 
             }
-
-            String ficSource = comparator.transfoCible(cible);
-
-            if (comparator.verifRecompilation(ficSource, cible)) {
-                System.out.println(commande);
-
                 if (!executerCommande(commande)) {
                     System.out.println("Erreur lors de l'exécution de la commande pour la cible : " + cible);
                     return; 
                 }
-            } else {
-                System.out.println("Pas de recompilation nécessaire pour la cible : " + cible);
-            }
-        }
-    } catch (IOException e) {
-        e.printStackTrace();
+           
+              } 
     }
-}
 
 
     public void executerCommandes() {

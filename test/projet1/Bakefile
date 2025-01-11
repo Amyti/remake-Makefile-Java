@@ -2,6 +2,7 @@ CC = gcc
 CFLAGS = -Wall
 
 
+
 .PHONY : clean run 
 
 all: main.o utils.o
