@@ -1,3 +1,8 @@
+package fr.iutfbleau.projet;
+
+import fr.iutfbleau.projet.utils.*;
+import fr.iutfbleau.projet.execute.*;
+
 import java.util.*;
 
 public class Bake {

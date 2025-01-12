@@ -1,3 +1,5 @@
+package fr.iutfbleau.projet.utils;
+
 import java.util.*;
 
 public class GrapheDep {

@@ -14,11 +14,14 @@ all: $(BUILD)/Bake.class
 $(BUILD)/Bake.class: $(SRC)/Bake.java $(BUILD)/BakeExecute.class $(BUILD)/BakeReader.class $(BUILD)/GrapheDep.class
 	$(JC) $(JCFLAGS) $(SRC)/Bake.java
 
+
+
 $(BUILD)/BakeExecute.class: $(SRC)/BakeExecute.java $(BUILD)/BakeComparator.class
-	$(JC) $(JCFLAGS) $(SRC)/BakeExecute.java
+	$(JC) $(JCFLAGS) $(SRC)/BakeExecute.java 
 
 $(BUILD)/BakeComparator.class: $(SRC)/BakeComparator.java
-	$(JC) $(JCFLAGS) $(SRC)/BakeComparator.java
+	$(JC) $(JCFLAGS) 
+
 
 $(BUILD)/BakeReader.class: $(SRC)/BakeReader.java
 	$(JC) $(JCFLAGS) $(SRC)/BakeReader.java
