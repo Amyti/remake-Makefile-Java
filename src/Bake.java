@@ -11,7 +11,6 @@ public class Bake {
         try {
 
             read = new BakeReader(bakefile);
-
             graphe = new GrapheDep(read.getCibles());
 
             if (graphe.detecterCycle()) {
@@ -20,10 +19,6 @@ public class Bake {
             }
 
             ordre = graphe.obtenirOrdreDeConstruction(); 
-
-           
-            
-
             exec = new BakeExecute(ordre, read.getCommandes(),read.getPhonyCibles() ,modeDebug);
 
             if(cibles.size() > 0){

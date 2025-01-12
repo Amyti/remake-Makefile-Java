@@ -20,7 +20,7 @@ public class BakeExecute {
             comparator = new BakeComparator(modeDebug);
 
             Thread.sleep(1500);
-            System.out.println("--------- Application compilé avec succees ! ---------");
+            
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -35,6 +35,7 @@ public class BakeExecute {
                 System.out.println("PAs de commande pour la cible " + cible);
                 continue; 
             }
+                System.out.println(commande);
                 if (!executerCommande(commande)) {
                     System.out.println("Erreur lors de l'exécution de la commande pour la cible : " + cible);
                     return; 
@@ -49,19 +50,31 @@ public class BakeExecute {
             for (String cible : ordre) {
 
                  if (phonyCibles.contains(cible)) {
-                continue;
-            }
-                    String commande = commandes.get(cible);
-                    String FicSource = comparator.transfoCible(cible);
-                if (commande != null && comparator.verifRecompilation(FicSource, cible)) {
-                    System.out.println(commande);
+                    continue;
+                }
+                String commande = commandes.get(cible);
+                
+                if (commande != null) {
+                    if(cible.contains(".")){
+                        String FicSource = comparator.transfoCible(cible);
+                        if (comparator.verifRecompilation(FicSource, cible)) {
+                            System.out.println(commande);
+                        
+                        }
+                    } else {
+                        System.out.println(commande);
+                    }
                     if (!executerCommande(commande)) {
                         System.err.println("Erreur lors de l'exécution de la commande.");
                         return;
                     }
                 }
-            }
-        } catch (IOException e) {
+
+                
+                }
+                System.out.println("--------- Application compilé avec succees ! ---------");
+                
+            }catch (IOException e) {
             e.printStackTrace();
         }
     }
