@@ -1,3 +1,10 @@
+/**
+* La classe <code>BakeExecute</code> est responsable de l'exécution des commandes
+* pour les cibles spécifiées en respectant leur ordre d'exécution.
+* 
+* @version 1.0
+* @author  Amir Kabbouri - Bamba Top - Athiran Nagathurai
+*/
 package fr.iutfbleau.projet.execute;
 
 import java.io.*;
@@ -8,12 +15,34 @@ import java.lang.InterruptedException;
 
 
 public class BakeExecute {
+    /**
+    * Instance de <code>BakeComparator</code> pour vérifier la nécessité d'une recompilation.
+    */
     private BakeComparator comparator;
+    /**
+    * Liste des cibles à exécuter dans leur ordre d'exécution.
+    */
     private List<String> ordre = new ArrayList<>();
+    /**
+    * Commandes associées à chaque cible.
+    */
     private HashMap<String, String> commandes = new HashMap<>();
+    /**
+    * Indique si le mode débogage est activé.
+    */
     private boolean modeDebug;
+    /**
+    * Ensemble des cibles marquées comme .PHONY.
+    */
     private Set<String> phonyCibles = new HashSet<>();;
-
+    /**
+    * Constructeur de la classe <code>BakeExecute</code>.
+    * 
+    * @param ordre       Liste ordonnée des cibles à exécuter.
+    * @param commandes   Commandes associées aux cibles.
+    * @param phonyCibles Ensemble des cibles .PHONY.
+    * @param modeDebug   Indique si le mode débogage est activé.
+    */
     public BakeExecute(List<String> ordre, HashMap<String, String> commandes, Set<String> phonyCibles, boolean modeDebug) {
         try {
             this.ordre = ordre;
@@ -21,38 +50,44 @@ public class BakeExecute {
             this.phonyCibles = phonyCibles;
             this.modeDebug = modeDebug;
             comparator = new BakeComparator(modeDebug);
-
+            
             Thread.sleep(1500);
             
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-
+    /**
+    * Exécute les commandes associées à une liste de cibles spécifiées.
+    * 
+    * @param cibles Liste des cibles à exécuter.
+    */
     public void executerCommandesCible(List<String> cibles) {
-   
+        
         for (String cible : cibles) {
-
+            
             String commande = commandes.get(cible);
             if (commande == null) {
                 System.out.println("PAs de commande pour la cible " + cible);
                 continue; 
             }
-                System.out.println(commande);
-                if (!executerCommande(commande)) {
-                    System.out.println("Erreur lors de l'exécution de la commande pour la cible : " + cible);
-                    return; 
-                }
-           
-              } 
+            System.out.println(commande);
+            if (!executerCommande(commande)) {
+                System.out.println("Erreur lors de l'exécution de la commande pour la cible : " + cible);
+                return; 
+            }
+            
+        } 
     }
-
-
+    
+    /**
+    * Exécute toutes les commandes dans l'ordre d'exécution des cibles.
+    */
     public void executerCommandes() {
         try {
             for (String cible : ordre) {
-
-                 if (phonyCibles.contains(cible)) {
+                
+                if (phonyCibles.contains(cible)) {
                     continue;
                 }
                 String commande = commandes.get(cible);
@@ -62,7 +97,7 @@ public class BakeExecute {
                         String FicSource = comparator.transfoCible(cible);
                         if (comparator.verifRecompilation(FicSource, cible)) {
                             System.out.println(commande);
-                        
+                            
                         }
                     } else {
                         System.out.println(commande);
@@ -72,31 +107,36 @@ public class BakeExecute {
                         return;
                     }
                 }
-
                 
-                }
-                System.out.println("--------- Compilation effectuée ! ---------");
                 
-            }catch (IOException e) {
+            }
+            System.out.println("--------- Compilation effectuée ! ---------");
+            
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    /**
+    * Exécute une commande donnée en utilisant un <code>ProcessBuilder</code>.
+    * 
+    * @param commande La commande à exécuter.
+    * @return <code>true</code> si l'exécution est réussie, sinon <code>false</code>.
+    */
     private boolean executerCommande(String commande) {
         String[] command = commande.split(" ");
-
-            ProcessBuilder processBuilder = new ProcessBuilder(command);
-            processBuilder.inheritIO();
-            try {
-                Process process = processBuilder.start();
-                int exitCode = process.waitFor();
-                return exitCode == 0;
-            } catch (IOException | InterruptedException e) {
-                return false; 
-            }
+        
+        ProcessBuilder processBuilder = new ProcessBuilder(command);
+        processBuilder.inheritIO();
+        try {
+            Process process = processBuilder.start();
+            int exitCode = process.waitFor();
+            return exitCode == 0;
+        } catch (IOException | InterruptedException e) {
+            return false; 
+        }
         
         
     }
-
+    
     
 }
