@@ -1,2 +1,2 @@
 Voici un mini projet en C tout simple dans lequel on utilise une fonction somme pour calculer la somme dans le main.
-Il s'agit ici du cas où l'on effectue une compilation depuis rien.
+Il s'agit ici du cas où il faut effectuer une compilation depuis rien.

@@ -1,42 +1,26 @@
 ### VARIABLES ###
-
 CC = gcc
-CFLAGS = -Wall -ansi -pedantic
-LIBS = -lgraph
-EXE = blocus
-OFILES = gui.o jeu.o main.o partie.o
-
-### BUT PAR DEFAUT ###
-
-all : $(EXE)
+CFLAGS = -Wall
 
 ### REGLES ESSENTIELLES ###
 
-jeu.o : jeu.c jeu.h types.h
-	$(CC) $(CFLAGS) -c jeu.c
+all: main.o operation.o
+	$(CC) $(CFLAGS) -o calculatrice main.o operation.o
 
-gui.o : gui.c gui.h jeu.h types.h
-	$(CC) $(CFLAGS) -c gui.c
-
-partie.o : partie.c partie.h jeu.h types.h
-	$(CC) $(CFLAGS) -c partie.c
-
-main.o : main.c gui.h jeu.h types.h
+main.o: main.c operation.o
 	$(CC) $(CFLAGS) -c main.c
 
-$(EXE) : $(OFILES)
-	$(CC) $(CFLAGS) -o $(EXE) $(OFILES) $(LIBS)
+operation.o: operation.c
+	$(CC) $(CFLAGS) -c operation.c
 
 ### REGLES OPTIONNELLES ###
 
-run : $(EXE)
-	./$(EXE)
+clean: 
+	rm -rf calculatrice operation.o main.o
 
-clean : 
-	-rm -rf $(blocus)
+run: 
+	 ./calculatrice
 
 ### BUTS FACTICES ###
 
-.PHONY : all run clean
-
-### FIN ###
+.PHONY : clean run 

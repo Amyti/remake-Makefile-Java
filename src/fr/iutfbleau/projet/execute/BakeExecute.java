@@ -75,7 +75,7 @@ public class BakeExecute {
 
                 
                 }
-                System.out.println("--------- Application compilé avec succees ! ---------");
+                System.out.println("--------- Compilation effectuée ! ---------");
                 
             }catch (IOException e) {
             e.printStackTrace();

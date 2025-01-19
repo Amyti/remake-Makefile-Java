@@ -10,7 +10,7 @@ public class Utils {
         System.out.println("T'es normal!");
     } 
     else if (age <= 101) {
-        System.out.println("BOF BOF !");
+        System.out.println("BOF BOF !!");
     } 
     else {
         System.out.println("Longue vie à toi!");
