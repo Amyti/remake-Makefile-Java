@@ -70,7 +70,7 @@ Attention En cas de dépendance circulaire, le programme doit réagir pour évit
   
   ## Rapport d'avancement :
   
-  Pour une analyse détaillée du projet, veuillez consulter le rapport d'avancement [rapport.pdf](https://grond.iut-fbleau.fr/nagathur/DEV/src/branch/main/rapport.pdf), disponible dans ce dépôt. Ce document inclut des descriptions de fonctionnalités, des diagrammes de structure, et des réflexions personnelles des auteurs sur le développement du programme.
+  Pour une analyse détaillée du projet, veuillez consulter le rapport d'avancement [rapport.pdf](https://grond.iut-fbleau.fr/kabbouri/SAE32_2024/src/branch/main/rapport.pdf), disponible dans ce dépôt. Ce document inclut des descriptions de fonctionnalités, des diagrammes de structure, et des réflexions personnelles des auteurs sur le développement du programme.
 
 ## API officielle de Java :
 
