@@ -33,7 +33,7 @@ run : $(EXE)
 	./$(EXE)
 
 clean : 
-	-rm -f blocus
+	-rm -rf $(blocus)
 
 ### BUTS FACTICES ###
 
