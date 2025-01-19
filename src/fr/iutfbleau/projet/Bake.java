@@ -52,10 +52,7 @@ public class Bake {
             read = new BakeReader(bakefile);
             graphe = new GrapheDep(read.getCibles());
             
-            if (graphe.detecterCycle()) {
-                System.err.println("Erreur : Dépendances circulaires détectées !");
-                return;
-            }
+            
             
             ordre = graphe.obtenirOrdreDeConstruction(); 
             exec = new BakeExecute(ordre, read.getCommandes(),read.getPhonyCibles() ,modeDebug);
@@ -63,6 +60,10 @@ public class Bake {
             if(cibles.size() > 0){
                 exec.executerCommandesCible(cibles);
             }else{
+                if (graphe.detecterCycle()) {
+                    System.err.println("Erreur : Dépendances circulaires détectées !");
+                    return;
+                }
                 exec.executerCommandes();
             }
             
