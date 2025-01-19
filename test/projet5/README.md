@@ -30,7 +30,7 @@ Main.java : Le point d’entrée du programme. Crée des instances des classes A
 
 ### Commandes pour exécuter le test
 
-#### 1) Compilation ou rien n'a été modifié :
+#### 1) Compilation avec une dépendance circulaires présente :
 
 ```bash
 java -cp ../../build fr.iutfbleau.projet.Bake -d 
@@ -42,3 +42,10 @@ $ java -cp ../../build fr.iutfbleau.projet.Bake -d
 Erreur : Dépendances circulaires détectées !
 ```
 
+**Que se passe-t-il ?** Lors de cette exécution en mode débogage, le programme Bake a analysé les dépendances spécifiées dans le Bakefile et a détecté une dépendance circulaire entre les fichiers source A.java et B.java :
+
+   * La classe A dépend de la classe B via son constructeur, où elle crée une instance de B.
+
+   * La classe B dépend de la classe A via son constructeur, où elle crée une instance de A.
+
+Cette situation crée une boucle logique où aucune des deux classes ne peut être compilée en premier, car elles dépendent l'une de l'autre. Bake a correctement détecté cette boucle et a affiché un message d'erreur.
