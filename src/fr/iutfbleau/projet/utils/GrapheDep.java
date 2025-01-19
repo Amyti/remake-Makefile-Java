@@ -9,10 +9,14 @@
 package fr.iutfbleau.projet.utils;
 
 import java.util.*;
-/**
+/** *
+ * Classe qui représente un graphe de dépendances entre les cibles et fournit des méthodes
+pour détecter les cycles et générer l’ordre de construction
+*/
+public class GrapheDep {
+    /**
      * Map contenant les cibles et leurs dépendances.
      */
-public class GrapheDep {
     private HashMap<String, String[]> dependances; 
 /**
      * Constructeur de la classe <code>GrapheDep</code>.

@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-
+/** *
+ * Classe qui lit et extrait les informations du Bakefile.
+*/
 public class BakeReader {
     /**
     * Chemin du fichier Bakefile.

@@ -12,6 +12,11 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.lang.InterruptedException;
 
+/** *
+ * Classe qui compare les dates de modification des fichiers sources et compilés pour
+déterminer si une recompilation est nécessaire.
+*/
+
 public class BakeComparator {
     /**
     * Indique si le mode débogage est activé.

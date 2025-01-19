@@ -13,7 +13,9 @@ import java.lang.Thread;
 import java.io.IOException;
 import java.lang.InterruptedException;
 
-
+/** *
+ *  Classe qui exécute les commandes des cibles dans l’ordre défini.
+*/
 public class BakeExecute {
     /**
     * Instance de <code>BakeComparator</code> pour vérifier la nécessité d'une recompilation.

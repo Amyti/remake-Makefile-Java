@@ -12,7 +12,10 @@ import fr.iutfbleau.projet.utils.*;
 import fr.iutfbleau.projet.execute.*;
 
 import java.util.*;
-
+/** *
+ * Classe qui coordonne le processus global (lecture, création du graphe, exécution des com-
+mandes).
+*/
 public class Bake {
     /**
     * Nom du fichier de configuration par défaut (Bakefile).

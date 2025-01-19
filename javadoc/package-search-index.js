@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.iutfbleau.projet"},{"l":"fr.iutfbleau.projet.execute"},{"l":"fr.iutfbleau.projet.utils"},{"l":"project"}]
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"fr.iutfbleau.projet"},{"l":"fr.iutfbleau.projet.execute"},{"l":"fr.iutfbleau.projet.utils"}]
