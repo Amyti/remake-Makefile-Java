@@ -1,5 +1,5 @@
 public class Utils {
     public static void afficherMessage() {
-        System.out.println("Messagesa affiché depuis la classe Utils.");
+        System.out.println("Message affiché depuis la classe Utils.");
     }
 }

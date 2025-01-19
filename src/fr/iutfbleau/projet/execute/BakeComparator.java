@@ -4,7 +4,7 @@ import java.nio.file.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.lang.InterruptedException;
-
+import fr.iutfbleau.projet.execute.BakeComparator;
 public class BakeComparator {
 
     private boolean modeDebug;

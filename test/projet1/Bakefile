@@ -1,18 +1,20 @@
+### VARIABLES ###
 CC = gcc
 CFLAGS = -Wall
 
-
-
-.PHONY : clean run 
+### REGLES ESSENTIELLES ###
 
 all: main.o utils.o
-	gcc -o app main.o utils.o
+	$(CC) $(CFLAGS) -o app main.o utils.o
+	@echo "Il s'agit d'un petit programme pour calculer une somme".
 
 main.o: main.c
-	gcc -c main.c
+	$(CC) $(CFLAGS) -c main.c
 
 utils.o: utils.c
-	gcc -c utils.c
+	$(CC) $(CFLAGS) -c utils.c
+
+### REGLES OPTIONNELLES ###
 
 clean: 
 	rm -rf app utils.o main.o
@@ -20,4 +22,6 @@ clean:
 run: 
 	 ./app
 
+### BUTS FACTICES ###
 
+.PHONY : clean run 

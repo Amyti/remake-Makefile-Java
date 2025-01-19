@@ -1,19 +1,26 @@
+### VARIABLES ###
 JC = javac
 JCFLAGS = -encoding UTF-8 -implicit:none
 
 JVM = java
 JVMFLAGS = 
 
-.PHONY : clean run
+### REGLES ESSENTIELLES ###
+all : Main.class Utils.class
 
-Main.class: Main.java
-	javac Main.java
+Main.class: Main.java Utils.class
+	$(JC) Main.java
 
 Utils.class: Utils.java
-	javac Utils.java
+	$(JC) Utils.java
 
+### REGLES OPTIONNELLES ###
 run:
-	java Main
+	$(JVM) Main
 
 clean:
-	rm -rf *.class
+	rm -rf Main.class Utils.class
+
+### BUTS FACTICES ###
+
+.PHONY : clean run

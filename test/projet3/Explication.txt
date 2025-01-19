@@ -1,0 +1,2 @@
+Il s'agit ici d'un mini projet en java.
+On fait une compilation ici en sachant qu'un résultat existe déja mais il y'a une source modifiée.

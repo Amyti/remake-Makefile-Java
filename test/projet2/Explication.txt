@@ -1,0 +1,2 @@
+Il s'agit d'un petit programme en java.
+On fait une compilation ici sachant qu'il y'a déja un résultat.

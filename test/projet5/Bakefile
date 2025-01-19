@@ -1,0 +1,32 @@
+### VARIABLES ###
+JC = javac
+JCFLAGS = -encoding UTF-8 
+JVM = java
+JVMFLAGS = 
+
+### REGLES ESSENTIELLES ###
+
+A.class: A.java B.class
+	$(JC) $(JCFLAGS)  A.java
+
+B.class: B.java A.class
+	$(JC) $(JCFLAGS) B.java
+
+C.class: C.java
+	$(JC) $(JCFLAGS)  C.java
+
+Main.class: Main.java A.class C.class
+	$(JC) $(JCFLAGS)  Main.java
+
+all: Main.class
+	@echo "Compilation terminée."
+
+### REGLES OPTIONNELLES ###
+clean:
+	-rm -rf *.class
+
+run: all
+	$(JVM) $(JVMFLAGS) Main
+
+### BUTS FACTICES ###
+.PHONY: all clean run
